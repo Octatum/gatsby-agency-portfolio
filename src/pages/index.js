@@ -71,9 +71,9 @@ class IndexPage extends React.Component {
         alignItems: 'flex-start',
       },
       splashPhrase: {
-        width: '70%',
+        width: '45%',
         paddingLeft: '20%',
-        color: '#ffffff',
+        color: '#000000',
       },
       work: {
         display: 'flex',
@@ -94,7 +94,7 @@ class IndexPage extends React.Component {
       },
       description: {
         maxWidth: '400px',
-        fontSize: '1.25rem',
+        fontSize: '1rem',
         margin: '0',
       },
       contactForm: {
@@ -104,7 +104,7 @@ class IndexPage extends React.Component {
         alignItems: 'center',
       },
       service: {
-        height: '250px',
+        height: '400px',
         width: '200px',
         margin: '50px',
         paddingTop: '20px',
@@ -116,10 +116,11 @@ class IndexPage extends React.Component {
         color: 'black',
       },
       serviceName: {
+        color: '#3FCA00',
         fontSize: '1.2rem',
       },
       serviceDescription: {
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         color: '#a9a9a9',
       },
       person: {
@@ -159,7 +160,7 @@ class IndexPage extends React.Component {
         <section style={styles.splash} className="section-container splash">
           {pageData.splash_phrase
             ? <div className="splash-phrase" style={styles.splashPhrase}>
-              <h2 style={{ fontSize: '2.5rem' }}>{pageData.splash_phrase}</h2>
+              <h2 style={{ fontSize: '1.5rem' }}>{pageData.splash_phrase}</h2>
             </div>
             : null
           }
@@ -172,7 +173,7 @@ class IndexPage extends React.Component {
           <Fade in={this.state.showWork}>
             <div className="section-wrapper">
               <div className="section-header" style={styles.header}>
-                <h2 className="section-title" style={styles.title}>What We Do</h2>
+                <h2 className="section-title" style={styles.title}>Lo que hacemos</h2>
                 <p className="people-description" style={styles.description}>{pageData.service_description}</p>
               </div>
               <div className="wrapper-content services">
@@ -200,6 +201,7 @@ class IndexPage extends React.Component {
         <section
           ref={el => { this.peopleElement = el }}
           className="section-container content people"
+          style={{display: 'none'}}
         >
           <Fade in={this.state.showPeople}>
             <div className="section-wrapper">
@@ -239,28 +241,28 @@ class IndexPage extends React.Component {
             <div className="contact-container">
               <div className="imageFilter" />
               <div style={styles.header}>
-                <h2 className="section-title" style={styles.title}>Contact Us</h2>
-                <p style={styles.description}>Fill out the form below if you would like to get a hold of us.</p>
+                <h2 className="section-title" style={styles.title}>Contáctanos</h2>
+                <p style={styles.description}>Llena el formulario de abajo si deseas obtener más información sobe nuestros servicios o una cotización. </p>
               </div>
               <form style={styles.contactForm} onSubmit={this.handleContactForm}>
                 <Collapse in={this.state.messageError}>
-                  <Message type="error" title="Error" description="Please Provide a valid input to all fields" />
+                  <Message type="error" title="Error" description="Introduce información válida en todos los campos" />
                 </Collapse>
                 <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
-                  <Input name="userName" value={this.state.userName} onChange={this.handleInput} placeholder="Name" />
+                  <Input name="userName" value={this.state.userName} onChange={this.handleInput} placeholder="Nombre" />
                   <Input name="userEmail" value={this.state.userEmail} onChange={this.handleInput} placeholder="Email" />
                 </div>
-                <Input name="messageSubject" value={this.state.messageSubject} onChange={this.handleInput} placeholder="Subject" />
-                <Input
+                <Input name="messageSubject" value={this.state.messageSubject} onChange={this.handleInput} placeholder="Asunto" />
+                <Input 
                   componentClass="textarea"
                   name="userMessage"
                   value={this.state.userMessage}
                   onChange={this.handleInput}
                   rows={5}
-                  placeholder="Message..."
+                  placeholder="Mensaje..."
                 />
-                <Button type="submit" appearance="ghost">
-                  Send Mail
+                <Button color='green' type="submit" appearance="ghost">
+                  Enviar
                 </Button>
               </form>
             </div>
@@ -396,7 +398,6 @@ query Index {
   }
   cosmicjsSettings(slug: { eq: "site-data" }) {
     metadata {
-      site_title
       site_logo {
         url
       }

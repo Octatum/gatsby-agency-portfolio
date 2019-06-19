@@ -208,7 +208,6 @@ export const query = graphql`
     }
     cosmicjsSettings(slug: { eq: "site-data" }) {
       metadata {
-        site_title
         site_logo {
           url
         }

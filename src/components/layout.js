@@ -57,7 +57,7 @@ const Layout = ({ children, siteTitle, siteLogo, contact, connect, headerBreakpo
             <h6 style={styles.contactLine}>{contact.address1}</h6>
             <h6 style={styles.contactLine}>{contact.address2}</h6>
             <h6 style={styles.contactLine}>{`${contact.city} ${contact.region}, ${contact.postal_code}`}</h6>
-            <h6 style={styles.contactLine}>{`Phone: ${contact.country_code ? contact.country_code : null} ${contact.phone_number}`}</h6>
+            <h6 style={styles.contactLine}>{`Teléfono: ${contact.country_code ? contact.country_code : null} ${contact.phone_number}`}</h6>
             <h6 style={styles.contactLine}>{`Email: ${contact.email}`}</h6>
           </div>
           : null

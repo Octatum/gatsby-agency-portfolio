@@ -181,7 +181,7 @@ class Work extends React.Component {
               </div>
             ))}
           </section>
-          <section className="section-container medium">
+          <section className="section-container medium" style={{display:'none'}}>
             <div style={styles.header}>
               <h2 style={styles.headerText}>Our Clients</h2>
             </div>
@@ -265,7 +265,6 @@ query Work {
     }
     cosmicjsSettings(slug: { eq: "site-data" }) {
       metadata {
-        site_title
         site_logo {
           url
         }

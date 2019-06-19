@@ -81,7 +81,7 @@ class Header extends React.Component {
           {logo ? <img src={logo.url} style={styles.logo} /> : <h5>GAP</h5>}
           <h1>
             <Link to="/" style={styles.link}>
-              {siteTitle}
+              {siteTitle} Inicio
             </Link>
           </h1>
         </Navbar.Header>
@@ -92,28 +92,28 @@ class Header extends React.Component {
               componentClass={Link}
               to="/work"
             >
-              Work
+              Servicios
             </Nav.Item>
             <Nav.Item
               className={this.state.activeKey.includes('projects') ? 'active' : ''}
               componentClass={Link}
               to="/projects"
             >
-              Projects
+              Proyectos
             </Nav.Item>
-            <Nav.Item
+            {/* <Nav.Item
               className={this.state.activeKey.includes('about') ? 'active' : ''}
               componentClass={Link}
               to="/about"
             >
               About
-            </Nav.Item>
+            </Nav.Item> */}
             <Nav.Item
               className={this.state.activeKey.includes('contact') ? 'active' : ''}
               componentClass={Link}
               to="/#contact"
             >
-              Contact
+              Contacto
             </Nav.Item>
           </Nav>
         </Navbar.Body>
