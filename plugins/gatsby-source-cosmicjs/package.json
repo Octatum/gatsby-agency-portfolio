@@ -1,0 +1,74 @@
+{
+  "_from": "gatsby-source-cosmicjs@^0.0.7",
+  "_id": "gatsby-source-cosmicjs@0.0.7",
+  "_inBundle": false,
+  "_integrity": "sha512-d8s5H+qqsaoe3RJ4sFl1MkwfHpA2WHo3Lzk2Sy1XI/juOjukDeI+cjUsOHXk5wXlBLheDObWBEhKpZV7lkE8Gg==",
+  "_location": "/gatsby-source-cosmicjs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "gatsby-source-cosmicjs@^0.0.7",
+    "name": "gatsby-source-cosmicjs",
+    "escapedName": "gatsby-source-cosmicjs",
+    "rawSpec": "^0.0.7",
+    "saveSpec": null,
+    "fetchSpec": "^0.0.7"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/gatsby-source-cosmicjs/-/gatsby-source-cosmicjs-0.0.7.tgz",
+  "_shasum": "95d0dd78a0a24f90a2ff0e18b1aff1294a0ded47",
+  "_spec": "gatsby-source-cosmicjs@^0.0.7",
+  "_where": "/home/robruizr/Software/octatum-customers/gatsby-agency-portfolio",
+  "author": {
+    "name": "Tony Spiro",
+    "email": "tspiro@tonyspiro.com",
+    "url": "https://cosmicjs.com"
+  },
+  "bugs": {
+    "url": "https://github.com/cosmicjs/gatsby-source-cosmicjs/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "axios": "^0.17.1",
+    "gatsby-node-helpers": "^0.3.0",
+    "lodash": "^4.17.4"
+  },
+  "deprecated": false,
+  "description": "Gatsby Source Plugin for building websites using Cosmic JS as a data source",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.5.3"
+  },
+  "homepage": "https://cosmicjs.com",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "cosmicjs"
+  ],
+  "license": "MIT",
+  "name": "gatsby-source-cosmicjs",
+  "pre-commit": [
+    "format"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cosmicjs/gatsby-source-cosmicjs.git"
+  },
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "format": "prettier --write 'src/**/*.js'",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "babel -w src --out-dir ."
+  },
+  "version": "0.0.7"
+}
