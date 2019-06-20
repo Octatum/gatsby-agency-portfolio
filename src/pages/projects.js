@@ -74,8 +74,8 @@ class Projects extends React.Component {
         <section className="page-container">
           <header className="page-header projects" style={styles.header}>
             <div className="header-filter">
-              <h3>Check Out Our Work</h3>
-              <p className="page-header-description">{pageData.summary}</p>
+              <h3 style={{color: 'black'}}>Revisa nuestros proyectos</h3>
+              <p style={{color: 'black'}}className="page-header-description">{pageData.summary}</p>
             </div>
           </header>
           <div className="project-gallery">

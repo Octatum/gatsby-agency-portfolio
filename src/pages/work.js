@@ -144,9 +144,9 @@ class Work extends React.Component {
         <section className="page-container work">
           <header className="page-header work" style={styles.pageHeader}>
             <div className="header-filter">
-              <h3>What We Do</h3>
+              <h3 style={{color: 'black'}}>Lo que hacemos</h3>
               {pageData.splash_phrase
-                ? <p className="page-header-description">{pageData.splash_phrase}</p>
+                ? <p style={{color: 'black'}} className="page-header-description">{pageData.splash_phrase}</p>
                 : null
               }
             </div>

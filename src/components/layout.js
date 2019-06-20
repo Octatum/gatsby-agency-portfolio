@@ -35,9 +35,11 @@ const Layout = ({ children, siteTitle, siteLogo, contact, connect, headerBreakpo
       alignItems: 'center',
     },
     link: {
+      color: '#3FCA00',
       margin: '0 15px',
     },
     span: {
+      
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -63,7 +65,7 @@ const Layout = ({ children, siteTitle, siteLogo, contact, connect, headerBreakpo
           : null
         }
         <span style={styles.span}>
-          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">&nbsp;Gatsby</a>
+          © {new Date().getFullYear()}, Built with <a style={{color:'#3FCA00'}} href="https://www.gatsbyjs.org">&nbsp;Gatsby</a>
           <a style={{ height: '35px', margin: '0 20px' }} href="https://cosmicjs.com/add-bucket?import_bucket=5cbf745a10d5c22da1f9b3e2"><img src="https://s3-us-west-2.amazonaws.com/cosmicjs/51fe54d0-4f6e-11e9-9f32-8d001da69630-powered-by-cosmicjs.svg" /></a>
         </span>
         {connect
