@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 import { Animation, Icon, Input, Button, Message } from 'rsuite';
-const { Fade, Collapse } = Animation;
+const { Collapse } = Animation;
 
 import 'rsuite/dist/styles/rsuite.min.css';
 import Layout from '../components/layout';
@@ -23,7 +23,6 @@ class IndexPage extends React.Component {
       userName: '',
       userEmail: '',
       userMessage: '',
-      messageSubject: '',
       messageError: false,
     };
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -171,44 +170,43 @@ class IndexPage extends React.Component {
           style={styles.work}
           className="section-container content work"
         >
-          <Fade in={this.state.showWork}>
-            <div className="section-wrapper">
-              <div className="section-header" style={styles.header}>
-                <h2 className="section-title" style={styles.title}>
-                  Lo que hacemos
-                </h2>
-                <p className="people-description" style={styles.description}>
-                  {pageData.service_description}
-                </p>
-              </div>
-              <div className="wrapper-content services">
-                {serviceData.map(service => (
-                  <Link
-                    to="/work"
-                    key={service.node.title}
-                    className="service-link"
-                    style={styles.service}
-                  >
-                    <Icon size="3x" icon={service.node.metadata.icon} />
-                    <h5 style={styles.serviceName}>{service.node.title}</h5>
-                    <p style={styles.serviceDescription}>
-                      {service.node.metadata.summary}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-              <div className="wrapper-content projects">
-                {projectData.map(project => (
-                  <ProjectDisplay
-                    key={project.node.title}
-                    title={project.node.title}
-                    description={project.node.metadata.summary}
-                    image={project.node.metadata.image.url}
-                  />
-                ))}
-              </div>
+          <div className="section-wrapper">
+            <div className="section-header" style={styles.header}>
+              <h2 className="section-title" style={styles.title}>
+                Lo que hacemos
+              </h2>
+              <p className="people-description" style={styles.description}>
+                {pageData.service_description}
+              </p>
             </div>
-          </Fade>
+            <div className="wrapper-content services">
+              {serviceData.map(service => (
+                <Link
+                  to="/work"
+                  key={service.node.title}
+                  className="service-link"
+                  style={styles.service}
+                >
+                  <Icon size="3x" icon={service.node.metadata.icon} />
+                  <h5 style={styles.serviceName}>{service.node.title}</h5>
+                  <p style={styles.serviceDescription}>
+                    {service.node.metadata.summary}
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <div className="wrapper-content projects">
+              {projectData.map(project => (
+                <ProjectDisplay
+                  key={project.node.title}
+                  title={project.node.title}
+                  siteUrl={project.node.metadata.siteUrl}
+                  description={project.node.metadata.summary}
+                  image={project.node.metadata.image.url}
+                />
+              ))}
+            </div>
+          </div>
         </section>
         <section
           ref={el => {
@@ -217,42 +215,40 @@ class IndexPage extends React.Component {
           className="section-container content people"
           style={{ display: 'none' }}
         >
-          <Fade in={this.state.showPeople}>
-            <div className="section-wrapper">
-              <div style={styles.header}>
-                <h2 className="section-title" style={styles.title}>
-                  Who We Are
-                </h2>
-                <p style={styles.description}>{pageData.people_description}</p>
-              </div>
-              <div className="wrapper-content people">
-                {peopleData.map(person => {
-                  return (
-                    <Link
-                      key={person.node.title}
-                      to="/about"
-                      style={styles.person}
-                    >
-                      <div
-                        style={{
-                          background: `url(${person.node.metadata.image.url})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',
-                          marginBottom: '14px',
-                          width: '100%',
-                          height: '200px',
-                        }}
-                      />
-                      <h5 style={styles.personName}>{person.node.title}</h5>
-                      <h6 style={styles.personTitle}>
-                        {person.node.metadata.job_title}
-                      </h6>
-                    </Link>
-                  );
-                })}
-              </div>
+          <div className="section-wrapper">
+            <div style={styles.header}>
+              <h2 className="section-title" style={styles.title}>
+                Who We Are
+              </h2>
+              <p style={styles.description}>{pageData.people_description}</p>
             </div>
-          </Fade>
+            <div className="wrapper-content people">
+              {peopleData.map(person => {
+                return (
+                  <Link
+                    key={person.node.title}
+                    to="/about"
+                    style={styles.person}
+                  >
+                    <div
+                      style={{
+                        background: `url(${person.node.metadata.image.url})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        marginBottom: '14px',
+                        width: '100%',
+                        height: '200px',
+                      }}
+                    />
+                    <h5 style={styles.personName}>{person.node.title}</h5>
+                    <h6 style={styles.personTitle}>
+                      {person.node.metadata.job_title}
+                    </h6>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </section>
         <section
           ref={el => {
@@ -261,69 +257,65 @@ class IndexPage extends React.Component {
           name="contact"
           className="section-container content bottom contact"
         >
-          <Fade in={this.state.showContact}>
-            <div className="contact-container">
-              <div className="imageFilter" />
-              <div style={styles.header}>
-                <h2 className="section-title" style={styles.title}>
-                  Contáctanos
-                </h2>
-                <p style={styles.description}>
-                  Llena el formulario de abajo si deseas obtener más información
-                  sobe nuestros servicios o una cotización.{' '}
-                </p>
-              </div>
-              <form
-                style={styles.contactForm}
-                onSubmit={this.handleContactForm}
-              >
-                <Collapse in={this.state.messageError}>
-                  <Message
-                    type="error"
-                    title="Error"
-                    description="Introduce información válida en todos los campos"
-                  />
-                </Collapse>
-                <div
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                  }}
-                >
-                  <Input
-                    name="userName"
-                    value={this.state.userName}
-                    onChange={this.handleInput}
-                    placeholder="Nombre"
-                  />
-                  <Input
-                    name="userEmail"
-                    value={this.state.userEmail}
-                    onChange={this.handleInput}
-                    placeholder="Email"
-                  />
-                </div>
-                <Input
-                  name="messageSubject"
-                  value={this.state.messageSubject}
-                  onChange={this.handleInput}
-                  placeholder="Asunto"
-                />
-                <Input
-                  componentClass="textarea"
-                  name="userMessage"
-                  value={this.state.userMessage}
-                  onChange={this.handleInput}
-                  rows={5}
-                  placeholder="Mensaje..."
-                />
-                <Button color="green" type="submit" appearance="ghost">
-                  Enviar
-                </Button>
-              </form>
+          <div className="contact-container">
+            <div className="imageFilter" />
+            <div style={styles.header}>
+              <h2 className="section-title" style={styles.title}>
+                Contáctanos
+              </h2>
+              <p style={styles.description}>
+                Llena el formulario de abajo si deseas obtener más información
+                sobe nuestros servicios o una cotización.{' '}
+              </p>
             </div>
-          </Fade>
+            <form style={styles.contactForm} onSubmit={this.handleContactForm}>
+              <Collapse in={this.state.messageError}>
+                <Message
+                  type="error"
+                  title="Error"
+                  description="Introduce información válida en todos los campos"
+                />
+              </Collapse>
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+              >
+                <Input
+                  name="userName"
+                  value={this.state.userName}
+                  onChange={this.handleInput}
+                  placeholder="Nombre"
+                  style={{ marginLeft: 0 }}
+                />
+                <Input
+                  name="userEmail"
+                  value={this.state.userEmail}
+                  onChange={this.handleInput}
+                  placeholder="Email"
+                />
+              </div>
+              <Input
+                componentClass="textarea"
+                name="userMessage"
+                value={this.state.userMessage}
+                onChange={this.handleInput}
+                rows={5}
+                placeholder="Mensaje..."
+                style={{ marginLeft: 0 }}
+              />
+              <Button
+                color="green"
+                type="submit"
+                appearance="ghost"
+                style={{ marginLeft: 0 }}
+              >
+                Enviar
+              </Button>
+            </form>
+          </div>
         </section>
       </Layout>
     );
@@ -369,14 +361,12 @@ class IndexPage extends React.Component {
     if (
       !this.state.userName ||
       !this.state.userEmail ||
-      !this.state.messageSubject ||
       !this.state.userMessage
     ) {
       this.setState({ messageError: true });
     } else {
       window.location.href = `
         mailto:${this.props.data.cosmicjsPages.metadata.contact_email}
-        ?subject=${this.state.messageSubject}
         &body=Name :: ${this.state.userName}%0D%0AEmail :: ${this.state.userEmail}%0D%0ASent From :: ${window.location.href},%0D%0A%0D%0A${this.state.userMessage}`;
     }
   }
@@ -438,6 +428,7 @@ export const query = graphql`
             image {
               url
             }
+            siteUrl: siteurl
             gallery
             summary
             description

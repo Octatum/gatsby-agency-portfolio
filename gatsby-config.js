@@ -1,9 +1,9 @@
-require("dotenv").config()
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Agency Portfolio`,
-    description: `A portfolio for your creative shop`,
+    title: `Octatum`,
+    description: `Estudio de desarrollo front-end enfocado en UI/UX, con sede en Monterrey, N.L.`,
     author: `@JacobKnaack`,
   },
   plugins: [
@@ -57,4 +57,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

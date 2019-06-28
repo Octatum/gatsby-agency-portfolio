@@ -59,17 +59,19 @@ class ProjectDisplay extends React.Component {
     }
 
     return (
-      <Link
-        to={`/projects?${encodeURI(this.props.title)}`}
+      <a
+        href={this.props.siteUrl}
         style={styles.container}
         onMouseEnter={this.handleHover}
         onMouseLeave={this.handleUnHover}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <div style={styles.details}>
           <h5 style={styles.title}>{this.props.title}</h5>
           <p style={styles.description}>{this.props.description}</p>
         </div>
-      </Link>
+      </a>
     );
   }
 
@@ -86,6 +88,7 @@ ProjectDisplay.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   size: PropTypes.string,
+  siteUrl: PropTypes.string,
 };
 
 export default ProjectDisplay;

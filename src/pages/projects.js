@@ -74,7 +74,7 @@ class Projects extends React.Component {
         <section className="page-container">
           <header className="page-header projects" style={styles.header}>
             <div className="header-filter">
-              <h3 style={{ color: 'black' }}>Revisa nuestros proyectos</h3>
+              <h3 style={{ color: 'black' }}>Conoce nuestros proyectos</h3>
               <p style={{ color: 'black' }} className="page-header-description">
                 {pageData.summary}
               </p>
@@ -86,6 +86,7 @@ class Projects extends React.Component {
                 <ProjectDisplay
                   key={project.node.title}
                   title={project.node.title}
+                  siteUrl={project.node.metadata.siteUrl}
                   description={project.node.metadata.summary}
                   image={project.node.metadata.image.url}
                   size="tall"
@@ -153,6 +154,7 @@ export const query = graphql`
             image {
               url
             }
+            siteUrl: siteurl
             summary
             description
           }
