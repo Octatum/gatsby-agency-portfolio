@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
 class ProjectDisplay extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      hover: false
-    }
-    this.handleHover = this.handleHover.bind(this)
-    this.handleUnHover = this.handleUnHover.bind(this)
+      hover: false,
+    };
+    this.handleHover = this.handleHover.bind(this);
+    this.handleUnHover = this.handleUnHover.bind(this);
   }
 
   render() {
@@ -35,7 +35,7 @@ class ProjectDisplay extends React.Component {
         justifyContent: 'flex-end',
         alignItems: 'flex-start',
         overflowY: 'auto',
-        transition: '0.3s ease-in-out'
+        transition: '0.3s ease-in-out',
       },
       title: {
         fontSize: '2rem',
@@ -43,19 +43,19 @@ class ProjectDisplay extends React.Component {
       },
       description: {
         fontSize: '1rem',
-      }
-    }
+      },
+    };
     if (this.props.image) {
-      styles.container.background = `url(${this.props.image})`
-      styles.container.backgroundSize = 'cover'
-      styles.container.backgroundPosition = 'center'
+      styles.container.background = `url(${this.props.image})`;
+      styles.container.backgroundSize = 'cover';
+      styles.container.backgroundPosition = 'center';
     }
     if (this.props.size === 'tall') {
-      styles.container.height = '600px'
-      styles.details.height = '600px'
+      styles.container.height = '600px';
+      styles.details.height = '600px';
     }
     if (this.state.hover) {
-      styles.details.opacity = '1'
+      styles.details.opacity = '1';
     }
 
     return (
@@ -70,14 +70,14 @@ class ProjectDisplay extends React.Component {
           <p style={styles.description}>{this.props.description}</p>
         </div>
       </Link>
-    )
+    );
   }
 
   handleHover() {
-    this.setState({ hover: true })
+    this.setState({ hover: true });
   }
   handleUnHover() {
-    this.setState({ hover: false })
+    this.setState({ hover: false });
   }
 }
 
@@ -86,6 +86,6 @@ ProjectDisplay.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   size: PropTypes.string,
-}
+};
 
-export default ProjectDisplay
+export default ProjectDisplay;

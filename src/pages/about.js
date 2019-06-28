@@ -1,23 +1,23 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { graphql } from "gatsby"
-import { Progress } from 'rsuite'
-const { Line } = Progress
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import { Progress } from 'rsuite';
+const { Line } = Progress;
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 class About extends React.Component {
   render() {
-    const pageData = this.props.data.cosmicjsPages.metadata
-    const peopleData = this.props.data.allCosmicjsPeople.edges
-    const skillData = this.props.data.allCosmicjsSkills.edges
-    const siteData = this.props.data.cosmicjsSettings.metadata
-    const contactData = this.props.data.cosmicjsContacts.metadata
-    const connectData = this.props.data.allCosmicjsConnects.edges
-    let headerBreakpoint
+    const pageData = this.props.data.cosmicjsPages.metadata;
+    const peopleData = this.props.data.allCosmicjsPeople.edges;
+    const skillData = this.props.data.allCosmicjsSkills.edges;
+    const siteData = this.props.data.cosmicjsSettings.metadata;
+    const contactData = this.props.data.cosmicjsContacts.metadata;
+    const connectData = this.props.data.allCosmicjsConnects.edges;
+    let headerBreakpoint;
     if (typeof window !== 'undefined') {
-      headerBreakpoint = window.innerHeight / 3
+      headerBreakpoint = window.innerHeight / 3;
     }
     const styles = {
       pageHeader: {
@@ -30,18 +30,18 @@ class About extends React.Component {
         margin: '0 20px',
         textAlign: 'right',
         fontSize: '1.5rem',
-        borderRight: 'thin solid black'
+        borderRight: 'thin solid black',
       },
       description: {
         width: '40%',
         marginRight: '30px',
-        fontSize: '1.0rem'
+        fontSize: '1.0rem',
       },
       skills: {
         maxWidth: '1000px',
         padding: '0 15px',
         marginLeft: 'auto',
-        marginRight: 'auto'
+        marginRight: 'auto',
       },
       skillDetails: {
         width: '90%',
@@ -66,22 +66,22 @@ class About extends React.Component {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        textDecoration: 'none'
+        textDecoration: 'none',
       },
       personName: {
         marginTop: '0',
         color: 'black',
-        fontSize: '1rem'
+        fontSize: '1rem',
       },
       personTitle: {
         color: 'grey',
         fontSize: '0.8rem',
-      }
-    }
+      },
+    };
     if (pageData.splash_image) {
-      styles.pageHeader.background = `url(${pageData.splash_image.url})`
-      styles.pageHeader.backgroundSize = 'cover'
-      styles.pageHeader.backgroundPosition = 'center'
+      styles.pageHeader.background = `url(${pageData.splash_image.url})`;
+      styles.pageHeader.backgroundSize = 'cover';
+      styles.pageHeader.backgroundPosition = 'center';
     }
 
     return (
@@ -97,22 +97,29 @@ class About extends React.Component {
           <header className="page-header about" style={styles.pageHeader}>
             <div className="header-filter">
               <h3>Who We Are</h3>
-              {pageData.splash_phrase
-                ? <p className="page-header-description">{pageData.splash_phrase}</p>
-                : null
-              }
+              {pageData.splash_phrase ? (
+                <p className="page-header-description">
+                  {pageData.splash_phrase}
+                </p>
+              ) : null}
             </div>
           </header>
           <section className="section-container short row">
-            <h4 className="intro-summary" style={styles.summary}>{pageData.intro_summary}</h4>
-            <p className="intro-description" style={styles.description}>{pageData.intro_description}</p>
+            <h4 className="intro-summary" style={styles.summary}>
+              {pageData.intro_summary}
+            </h4>
+            <p className="intro-description" style={styles.description}>
+              {pageData.intro_description}
+            </p>
           </section>
           <section className="section-container short" style={styles.skills}>
             {skillData.map(skill => (
               <div key={skill.node.title}>
                 <div style={styles.skillDetails}>
                   <h4 style={styles.skillName}>{skill.node.title}</h4>
-                  <p style={styles.skillDescription}>{skill.node.metadata.description}</p>
+                  <p style={styles.skillDescription}>
+                    {skill.node.metadata.description}
+                  </p>
                 </div>
                 <Line
                   percent={skill.node.metadata.progress}
@@ -137,14 +144,16 @@ class About extends React.Component {
                     }}
                   />
                   <h5 style={styles.personName}>{person.node.title}</h5>
-                  <h6 style={styles.personTitle}>{person.node.metadata.job_title}</h6>
+                  <h6 style={styles.personTitle}>
+                    {person.node.metadata.job_title}
+                  </h6>
                 </div>
               ))}
             </div>
           </section>
         </section>
       </Layout>
-    )
+    );
   }
 }
 
@@ -194,7 +203,7 @@ export const query = graphql`
         }
       }
     }
-    cosmicjsContacts(slug: {eq: "company-footer"}) {
+    cosmicjsContacts(slug: { eq: "company-footer" }) {
       metadata {
         address1
         address2
@@ -214,11 +223,11 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 About.propTypes = {
   data: PropTypes.object,
   pageContext: PropTypes.object.isRequired,
-}
+};
 
-export default About
+export default About;

@@ -1,53 +1,53 @@
-import React from "react"
-import PropTypes from 'prop-types'
-import { graphql } from "gatsby"
-import { Modal } from 'rsuite'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import { Modal } from 'rsuite';
 
-import ProjectDisplay from '../components/projectDisplay.js'
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import ProjectDisplay from '../components/projectDisplay.js';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 class Projects extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       selectedProject: {},
-      modalOpen: false
-    }
+      modalOpen: false,
+    };
   }
 
   static getDerivedStateFromProps(props, state) {
-    const tempState = state
-    const list = props.data.allCosmicjsProjects.edges
-    let projectName
-    if (typeof window !== "undefined") {
-      projectName = decodeURI(window.location.search).substring(1)
+    const tempState = state;
+    const list = props.data.allCosmicjsProjects.edges;
+    let projectName;
+    if (typeof window !== 'undefined') {
+      projectName = decodeURI(window.location.search).substring(1);
     }
     for (const i in list) {
       if (list[i].node.title === projectName) {
-        tempState.selectedProject = list[i].node
-        tempState.modalOpen = true
+        tempState.selectedProject = list[i].node;
+        tempState.modalOpen = true;
       }
     }
-    return tempState
+    return tempState;
   }
 
   render() {
-    const pageData = this.props.data.cosmicjsPages.metadata
-    const projectData = this.props.data.allCosmicjsProjects.edges
-    const connectData = this.props.data.allCosmicjsConnects.edges
-    const contactData = this.props.data.cosmicjsContacts.metadata
-    const siteData = this.props.data.cosmicjsSettings.metadata
-    let headerBreakpoint
+    const pageData = this.props.data.cosmicjsPages.metadata;
+    const projectData = this.props.data.allCosmicjsProjects.edges;
+    const connectData = this.props.data.allCosmicjsConnects.edges;
+    const contactData = this.props.data.cosmicjsContacts.metadata;
+    const siteData = this.props.data.cosmicjsSettings.metadata;
+    let headerBreakpoint;
     if (typeof window !== 'undefined') {
-      headerBreakpoint = window.innerHeight / 3
+      headerBreakpoint = window.innerHeight / 3;
     }
     const styles = {
       header: {
         padding: '0',
       },
       modal: {
-        top: '50px'
+        top: '50px',
       },
       gallery: {
         marginTop: '15px',
@@ -55,12 +55,12 @@ class Projects extends React.Component {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-      }
-    }
+      },
+    };
     if (pageData.splash_image) {
-      styles.header.background = `url(${pageData.splash_image.url})`
-      styles.header.backgroundSize = 'cover'
-      styles.header.backgroundPosition = 'center'
+      styles.header.background = `url(${pageData.splash_image.url})`;
+      styles.header.backgroundSize = 'cover';
+      styles.header.backgroundPosition = 'center';
     }
     return (
       <Layout
@@ -74,8 +74,10 @@ class Projects extends React.Component {
         <section className="page-container">
           <header className="page-header projects" style={styles.header}>
             <div className="header-filter">
-              <h3 style={{color: 'black'}}>Revisa nuestros proyectos</h3>
-              <p style={{color: 'black'}}className="page-header-description">{pageData.summary}</p>
+              <h3 style={{ color: 'black' }}>Revisa nuestros proyectos</h3>
+              <p style={{ color: 'black' }} className="page-header-description">
+                {pageData.summary}
+              </p>
             </div>
           </header>
           <div className="project-gallery">
@@ -88,19 +90,23 @@ class Projects extends React.Component {
                   image={project.node.metadata.image.url}
                   size="tall"
                 />
-              )
+              );
             })}
           </div>
-          <Modal style={styles.modal} show={this.state.modalOpen} onHide={this.handleClose} size="md">
-            {this.state.selectedProject.title
-              ? <Modal.Header>
+          <Modal
+            style={styles.modal}
+            show={this.state.modalOpen}
+            onHide={this.handleClose}
+            size="md"
+          >
+            {this.state.selectedProject.title ? (
+              <Modal.Header>
                 <Modal.Title>{this.state.selectedProject.title}</Modal.Title>
                 <p>{this.state.selectedProject.metadata.date}</p>
               </Modal.Header>
-              : null
-            }
-            {this.state.selectedProject.title
-              ? <Modal.Body>
+            ) : null}
+            {this.state.selectedProject.title ? (
+              <Modal.Body>
                 {this.state.selectedProject.metadata.description}
                 <div className="modal-gallery" style={styles.gallery}>
                   {this.state.selectedProject.metadata.gallery.map(imageUrl => (
@@ -112,17 +118,17 @@ class Projects extends React.Component {
                   ))}
                 </div>
               </Modal.Body>
-              : null
-            }
+            ) : null}
           </Modal>
         </section>
       </Layout>
-    )
+    );
   }
 
   handleClose() {
     if (typeof window !== 'undefined') {
-      window.location.href = window.location.protocol + window.location.pathname
+      window.location.href =
+        window.location.protocol + window.location.pathname;
     }
   }
 }
@@ -163,7 +169,7 @@ export const query = graphql`
         }
       }
     }
-    cosmicjsContacts(slug: {eq: "company-footer"}) {
+    cosmicjsContacts(slug: { eq: "company-footer" }) {
       metadata {
         address1
         address2
@@ -183,10 +189,10 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 Projects.propTypes = {
   data: PropTypes.object.isRequired,
-}
+};
 
-export default Projects
+export default Projects;

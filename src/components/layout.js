@@ -5,23 +5,30 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Container, Icon } from 'rsuite'
-import Header from "./header"
-import "./layout.scss"
+import { Container, Icon } from 'rsuite';
+import Header from './header';
+import './layout.scss';
 
-const Layout = ({ children, siteTitle, siteLogo, contact, connect, headerBreakpoint }) => {
+const Layout = ({
+  children,
+  siteTitle,
+  siteLogo,
+  contact,
+  connect,
+  headerBreakpoint,
+}) => {
   const styles = {
     main: {
       minheight: 'calc(100vh - 185px)',
     },
     footer: {
-      width: "100%",
+      width: '100%',
       height: '200px',
       position: 'relative',
-      display: "flex",
+      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
@@ -39,51 +46,68 @@ const Layout = ({ children, siteTitle, siteLogo, contact, connect, headerBreakpo
       margin: '0 15px',
     },
     span: {
-      
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
     },
     contactLine: {
-      marginBottom: '10px'
-    }
-  }
+      marginBottom: '10px',
+    },
+  };
   return (
     <Container>
-      <Header siteTitle={siteTitle} logo={siteLogo} breakpoint={headerBreakpoint} />
+      <Header
+        siteTitle={siteTitle}
+        logo={siteLogo}
+        breakpoint={headerBreakpoint}
+      />
       <main style={styles.main}>{children}</main>
       <footer style={styles.footer}>
-        {contact
-          ? <div>
+        {contact ? (
+          <div>
             <h6 style={styles.contactLine}>{contact.address1}</h6>
             <h6 style={styles.contactLine}>{contact.address2}</h6>
-            <h6 style={styles.contactLine}>{`${contact.city} ${contact.region}, ${contact.postal_code}`}</h6>
-            <h6 style={styles.contactLine}>{`Teléfono: ${contact.country_code ? contact.country_code : null} ${contact.phone_number}`}</h6>
+            <h6
+              style={styles.contactLine}
+            >{`${contact.city} ${contact.region}, ${contact.postal_code}`}</h6>
+            <h6 style={styles.contactLine}>{`Teléfono: ${
+              contact.country_code ? contact.country_code : null
+            } ${contact.phone_number}`}</h6>
             <h6 style={styles.contactLine}>{`Email: ${contact.email}`}</h6>
           </div>
-          : null
-        }
+        ) : null}
         <span style={styles.span}>
-          © {new Date().getFullYear()}, Built with <a style={{color:'#3FCA00'}} href="https://www.gatsbyjs.org">&nbsp;Gatsby</a>
-          <a style={{ height: '35px', margin: '0 20px' }} href="https://cosmicjs.com/add-bucket?import_bucket=5cbf745a10d5c22da1f9b3e2"><img src="https://s3-us-west-2.amazonaws.com/cosmicjs/51fe54d0-4f6e-11e9-9f32-8d001da69630-powered-by-cosmicjs.svg" /></a>
+          © {new Date().getFullYear()}, Built with{' '}
+          <a style={{ color: '#3FCA00' }} href="https://www.gatsbyjs.org">
+            &nbsp;Gatsby
+          </a>
+          <a
+            style={{ height: '35px', margin: '0 20px' }}
+            href="https://cosmicjs.com/add-bucket?import_bucket=5cbf745a10d5c22da1f9b3e2"
+          >
+            <img src="https://s3-us-west-2.amazonaws.com/cosmicjs/51fe54d0-4f6e-11e9-9f32-8d001da69630-powered-by-cosmicjs.svg" />
+          </a>
         </span>
-        {connect
-          ? <div style={styles.linkContainer}>
+        {connect ? (
+          <div style={styles.linkContainer}>
             {connect.map(link => {
               return (
-                <a key={link.node.title} href={`https://${link.node.metadata.url}`} style={styles.link}>
+                <a
+                  key={link.node.title}
+                  href={`https://${link.node.metadata.url}`}
+                  style={styles.link}
+                >
                   <Icon size="3x" icon={link.node.title} />
                 </a>
-              )
+              );
             })}
           </div>
-          : null
-        }
+        ) : null}
       </footer>
     </Container>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
@@ -92,6 +116,6 @@ Layout.propTypes = {
   contact: PropTypes.object,
   connect: PropTypes.array,
   headerBreakpoint: PropTypes.number,
-}
+};
 
-export default Layout
+export default Layout;

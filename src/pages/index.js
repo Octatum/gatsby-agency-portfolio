@@ -1,18 +1,18 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link, graphql } from "gatsby"
-import { Animation, Icon, Input, Button, Message } from 'rsuite'
-const { Fade, Collapse } = Animation
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link, graphql } from 'gatsby';
+import { Animation, Icon, Input, Button, Message } from 'rsuite';
+const { Fade, Collapse } = Animation;
 
-import 'rsuite/dist/styles/rsuite.min.css'
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import ProjectDisplay from '../components/projectDisplay.js'
+import 'rsuite/dist/styles/rsuite.min.css';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import ProjectDisplay from '../components/projectDisplay.js';
 
 // Home Page
 class IndexPage extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       workHeight: 0,
       showWork: false,
@@ -25,42 +25,42 @@ class IndexPage extends React.Component {
       userMessage: '',
       messageSubject: '',
       messageError: false,
-    }
-    this.updateDimensions = this.updateDimensions.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-    this.handleContactForm = this.handleContactForm.bind(this)
-    this.handleInput = this.handleInput.bind(this)
+    };
+    this.updateDimensions = this.updateDimensions.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleContactForm = this.handleContactForm.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
-    const workHeight = this.workElement.clientHeight
-    const peopleHeight = this.peopleElement.clientHeight
-    const contactHeight = this.contactElement.clientHeight
-    this.setState({ workHeight, peopleHeight, contactHeight })
-    window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener("resize", this.updateDimensions)
+    const workHeight = this.workElement.clientHeight;
+    const peopleHeight = this.peopleElement.clientHeight;
+    const contactHeight = this.contactElement.clientHeight;
+    this.setState({ workHeight, peopleHeight, contactHeight });
+    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.updateDimensions);
   }
   componentDidUpdate() {
     if (this.state.messageError) {
-      window.setTimeout(() => this.setState({ messageError: false }), 3000)
+      window.setTimeout(() => this.setState({ messageError: false }), 3000);
     }
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener("resize", this.updateDimensions)
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   render() {
-    const pageData = this.props.data.cosmicjsPages.metadata
-    const siteData = this.props.data.cosmicjsSettings.metadata
-    const contactData = this.props.data.cosmicjsContacts.metadata
-    const connectData = this.props.data.allCosmicjsConnects.edges
-    const peopleData = this.props.data.allCosmicjsPeople.edges
-    const serviceData = this.props.data.allCosmicjsServices.edges
-    const projectData = this.props.data.allCosmicjsProjects.edges
-    let headerBreakpoint
+    const pageData = this.props.data.cosmicjsPages.metadata;
+    const siteData = this.props.data.cosmicjsSettings.metadata;
+    const contactData = this.props.data.cosmicjsContacts.metadata;
+    const connectData = this.props.data.allCosmicjsConnects.edges;
+    const peopleData = this.props.data.allCosmicjsPeople.edges;
+    const serviceData = this.props.data.allCosmicjsServices.edges;
+    const projectData = this.props.data.allCosmicjsProjects.edges;
+    let headerBreakpoint;
     if (typeof window !== 'undefined') {
-      headerBreakpoint = window.innerHeight - 125
+      headerBreakpoint = window.innerHeight - 125;
     }
     const styles = {
       splash: {
@@ -90,7 +90,7 @@ class IndexPage extends React.Component {
       title: {
         paddingRight: '50px',
         marginRight: '100px',
-        borderRight: 'thin solid black'
+        borderRight: 'thin solid black',
       },
       description: {
         maxWidth: '400px',
@@ -130,23 +130,23 @@ class IndexPage extends React.Component {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        textDecoration: 'none'
+        textDecoration: 'none',
       },
       personName: {
         marginTop: '0',
         color: 'black',
-        fontSize: '1rem'
+        fontSize: '1rem',
       },
       personTitle: {
         color: 'grey',
         fontSize: '0.8rem',
-      }
-    }
+      },
+    };
     if (pageData.splash_image) {
-      styles.splash.background = `url(${pageData.splash_image.url})`
-      styles.splash.backgroundSize = `cover`
-      styles.splash.backgroundRepeat = 'no-repeat'
-      styles.splash.backgroundPosition = 'center'
+      styles.splash.background = `url(${pageData.splash_image.url})`;
+      styles.splash.backgroundSize = `cover`;
+      styles.splash.backgroundRepeat = 'no-repeat';
+      styles.splash.backgroundPosition = 'center';
     }
     return (
       <Layout
@@ -158,30 +158,42 @@ class IndexPage extends React.Component {
       >
         <SEO title="Home" keywords={[`cosmic js`, `application`, `react`]} />
         <section style={styles.splash} className="section-container splash">
-          {pageData.splash_phrase
-            ? <div className="splash-phrase" style={styles.splashPhrase}>
+          {pageData.splash_phrase ? (
+            <div className="splash-phrase" style={styles.splashPhrase}>
               <h2 style={{ fontSize: '1.5rem' }}>{pageData.splash_phrase}</h2>
             </div>
-            : null
-          }
+          ) : null}
         </section>
         <section
-          ref={el => { this.workElement = el }}
+          ref={el => {
+            this.workElement = el;
+          }}
           style={styles.work}
           className="section-container content work"
         >
           <Fade in={this.state.showWork}>
             <div className="section-wrapper">
               <div className="section-header" style={styles.header}>
-                <h2 className="section-title" style={styles.title}>Lo que hacemos</h2>
-                <p className="people-description" style={styles.description}>{pageData.service_description}</p>
+                <h2 className="section-title" style={styles.title}>
+                  Lo que hacemos
+                </h2>
+                <p className="people-description" style={styles.description}>
+                  {pageData.service_description}
+                </p>
               </div>
               <div className="wrapper-content services">
                 {serviceData.map(service => (
-                  <Link to="/work" key={service.node.title} className="service-link" style={styles.service}>
+                  <Link
+                    to="/work"
+                    key={service.node.title}
+                    className="service-link"
+                    style={styles.service}
+                  >
                     <Icon size="3x" icon={service.node.metadata.icon} />
                     <h5 style={styles.serviceName}>{service.node.title}</h5>
-                    <p style={styles.serviceDescription}>{service.node.metadata.summary}</p>
+                    <p style={styles.serviceDescription}>
+                      {service.node.metadata.summary}
+                    </p>
                   </Link>
                 ))}
               </div>
@@ -199,20 +211,28 @@ class IndexPage extends React.Component {
           </Fade>
         </section>
         <section
-          ref={el => { this.peopleElement = el }}
+          ref={el => {
+            this.peopleElement = el;
+          }}
           className="section-container content people"
-          style={{display: 'none'}}
+          style={{ display: 'none' }}
         >
           <Fade in={this.state.showPeople}>
             <div className="section-wrapper">
               <div style={styles.header}>
-                <h2 className="section-title" style={styles.title}>Who We Are</h2>
+                <h2 className="section-title" style={styles.title}>
+                  Who We Are
+                </h2>
                 <p style={styles.description}>{pageData.people_description}</p>
               </div>
               <div className="wrapper-content people">
                 {peopleData.map(person => {
                   return (
-                    <Link key={person.node.title} to="/about" style={styles.person}>
+                    <Link
+                      key={person.node.title}
+                      to="/about"
+                      style={styles.person}
+                    >
                       <div
                         style={{
                           background: `url(${person.node.metadata.image.url})`,
@@ -224,16 +244,20 @@ class IndexPage extends React.Component {
                         }}
                       />
                       <h5 style={styles.personName}>{person.node.title}</h5>
-                      <h6 style={styles.personTitle}>{person.node.metadata.job_title}</h6>
+                      <h6 style={styles.personTitle}>
+                        {person.node.metadata.job_title}
+                      </h6>
                     </Link>
-                  )
+                  );
                 })}
               </div>
             </div>
           </Fade>
         </section>
         <section
-          ref={el => { this.contactElement = el }}
+          ref={el => {
+            this.contactElement = el;
+          }}
           name="contact"
           className="section-container content bottom contact"
         >
@@ -241,19 +265,52 @@ class IndexPage extends React.Component {
             <div className="contact-container">
               <div className="imageFilter" />
               <div style={styles.header}>
-                <h2 className="section-title" style={styles.title}>Contáctanos</h2>
-                <p style={styles.description}>Llena el formulario de abajo si deseas obtener más información sobe nuestros servicios o una cotización. </p>
+                <h2 className="section-title" style={styles.title}>
+                  Contáctanos
+                </h2>
+                <p style={styles.description}>
+                  Llena el formulario de abajo si deseas obtener más información
+                  sobe nuestros servicios o una cotización.{' '}
+                </p>
               </div>
-              <form style={styles.contactForm} onSubmit={this.handleContactForm}>
+              <form
+                style={styles.contactForm}
+                onSubmit={this.handleContactForm}
+              >
                 <Collapse in={this.state.messageError}>
-                  <Message type="error" title="Error" description="Introduce información válida en todos los campos" />
+                  <Message
+                    type="error"
+                    title="Error"
+                    description="Introduce información válida en todos los campos"
+                  />
                 </Collapse>
-                <div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
-                  <Input name="userName" value={this.state.userName} onChange={this.handleInput} placeholder="Nombre" />
-                  <Input name="userEmail" value={this.state.userEmail} onChange={this.handleInput} placeholder="Email" />
+                <div
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                  }}
+                >
+                  <Input
+                    name="userName"
+                    value={this.state.userName}
+                    onChange={this.handleInput}
+                    placeholder="Nombre"
+                  />
+                  <Input
+                    name="userEmail"
+                    value={this.state.userEmail}
+                    onChange={this.handleInput}
+                    placeholder="Email"
+                  />
                 </div>
-                <Input name="messageSubject" value={this.state.messageSubject} onChange={this.handleInput} placeholder="Asunto" />
-                <Input 
+                <Input
+                  name="messageSubject"
+                  value={this.state.messageSubject}
+                  onChange={this.handleInput}
+                  placeholder="Asunto"
+                />
+                <Input
                   componentClass="textarea"
                   name="userMessage"
                   value={this.state.userMessage}
@@ -261,7 +318,7 @@ class IndexPage extends React.Component {
                   rows={5}
                   placeholder="Mensaje..."
                 />
-                <Button color='green' type="submit" appearance="ghost">
+                <Button color="green" type="submit" appearance="ghost">
                   Enviar
                 </Button>
               </form>
@@ -269,7 +326,7 @@ class IndexPage extends React.Component {
           </Fade>
         </section>
       </Layout>
-    )
+    );
   }
 
   updateDimensions() {
@@ -277,134 +334,147 @@ class IndexPage extends React.Component {
       workHeight: this.workElement.clientHeight,
       peopleHeight: this.peopleElement.clientHeight,
       contactHeight: this.contactElement.clientHeight,
-    })
+    });
   }
 
   handleScroll() {
-    if (window.scrollY >= (window.innerHeight / 3) + 100) {
-      this.setState({ showWork: true })
+    if (window.scrollY >= window.innerHeight / 3 + 100) {
+      this.setState({ showWork: true });
     } else {
-      this.setState({ showWork: false })
+      this.setState({ showWork: false });
     }
-    if (window.scrollY >= ((window.innerHeight + this.state.workHeight) - (window.innerHeight / 3))) {
-      this.setState({ showPeople: true, showWork: false })
+    if (
+      window.scrollY >=
+      window.innerHeight + this.state.workHeight - window.innerHeight / 3
+    ) {
+      this.setState({ showPeople: true, showWork: false });
     } else {
-      this.setState({ showPeople: false })
+      this.setState({ showPeople: false });
     }
-    if (window.scrollY >= ((window.innerHeight + this.state.workHeight + this.state.peopleHeight) - (window.innerHeight / 3))) {
-      this.setState({ showContact: true, showPeople: false })
+    if (
+      window.scrollY >=
+      window.innerHeight +
+        this.state.workHeight +
+        this.state.peopleHeight -
+        window.innerHeight / 3
+    ) {
+      this.setState({ showContact: true, showPeople: false });
     } else {
-      this.setState({ showContact: false })
+      this.setState({ showContact: false });
     }
   }
 
   handleContactForm(e) {
-    e.preventDefault()
-    if (!this.state.userName || !this.state.userEmail || !this.state.messageSubject || !this.state.userMessage) {
-      this.setState({ messageError: true })
+    e.preventDefault();
+    if (
+      !this.state.userName ||
+      !this.state.userEmail ||
+      !this.state.messageSubject ||
+      !this.state.userMessage
+    ) {
+      this.setState({ messageError: true });
     } else {
       window.location.href = `
         mailto:${this.props.data.cosmicjsPages.metadata.contact_email}
         ?subject=${this.state.messageSubject}
-        &body=Name :: ${this.state.userName}%0D%0AEmail :: ${this.state.userEmail}%0D%0ASent From :: ${window.location.href},%0D%0A%0D%0A${this.state.userMessage}`
+        &body=Name :: ${this.state.userName}%0D%0AEmail :: ${this.state.userEmail}%0D%0ASent From :: ${window.location.href},%0D%0A%0D%0A${this.state.userMessage}`;
     }
   }
 
   handleInput(value, e) {
-    const { name } = e.target
-    this.setState({ [name]: value })
+    const { name } = e.target;
+    this.setState({ [name]: value });
   }
 }
 
 IndexPage.propTypes = {
   data: PropTypes.object,
-}
+};
 
 export const query = graphql`
-query Index {
-  cosmicjsPages(slug: { eq: "home" }) {
-    metadata {
-      splash_image {
-        url
+  query Index {
+    cosmicjsPages(slug: { eq: "home" }) {
+      metadata {
+        splash_image {
+          url
+        }
+        splash_phrase
+        contact_email
+        service_description
+        people_description
       }
-      splash_phrase
-      contact_email
-      service_description
-      people_description
     }
-  }
-  allCosmicjsPeople {
-    edges {
-      node {
-        title
-        metadata {
-          image {
+    allCosmicjsPeople {
+      edges {
+        node {
+          title
+          metadata {
+            image {
+              url
+            }
+            job_title
+          }
+        }
+      }
+    }
+    allCosmicjsServices {
+      edges {
+        node {
+          title
+          metadata {
+            icon
+            description
+            summary
+          }
+        }
+      }
+    }
+    allCosmicjsProjects {
+      edges {
+        node {
+          title
+          metadata {
+            date
+            image {
+              url
+            }
+            gallery
+            summary
+            description
+          }
+        }
+      }
+    }
+    allCosmicjsConnects {
+      edges {
+        node {
+          title
+          metadata {
             url
           }
-          job_title
         }
       }
     }
-  }
-  allCosmicjsServices {
-    edges {
-      node {
-        title
-        metadata {
-          icon
-          description
-          summary
-        }
+    cosmicjsContacts(slug: { eq: "company-footer" }) {
+      metadata {
+        address1
+        address2
+        postal_code
+        city
+        region
+        country_code
+        email
+        phone_number
       }
     }
-  }
-  allCosmicjsProjects {
-    edges {
-      node {
-        title
-        metadata {
-          date
-          image {
-            url
-          }
-          gallery
-          summary
-          description
-        }
-      }
-    }
-  }
-  allCosmicjsConnects {
-    edges {
-      node {
-        title
-        metadata { 
+    cosmicjsSettings(slug: { eq: "site-data" }) {
+      metadata {
+        site_logo {
           url
         }
       }
     }
   }
-  cosmicjsContacts(slug: {eq: "company-footer"}) {
-    metadata {
-      address1
-      address2
-      postal_code
-      city
-      region
-      country_code
-      email
-      phone_number
-    }
-  }
-  cosmicjsSettings(slug: { eq: "site-data" }) {
-    metadata {
-      site_logo {
-        url
-      }
-    }
-  }
-}
-`
+`;
 
-
-export default IndexPage
+export default IndexPage;

@@ -1,37 +1,37 @@
-import React from "react"
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import { Navbar, Nav } from "rsuite"
+import React from 'react';
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import { Navbar, Nav } from 'rsuite';
 
 class Header extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       scrollTop: true,
       activeKey: '',
-    }
-    this.handleScroll = this.handleScroll.bind(this)
+    };
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentWillMount() {
     if (typeof window !== 'undefined') {
       if (window.location.hash) {
-        this.setState({ activeKey: window.location.hash })
+        this.setState({ activeKey: window.location.hash });
       } else {
-        this.setState({ activeKey: window.location.pathname })
+        this.setState({ activeKey: window.location.pathname });
       }
     }
   }
 
   componentDidMount() {
     if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll);
     }
   }
 
   componentWillUnmount() {
     if (typeof window !== 'undefined') {
-      window.removeEventListener('scroll', this.handleScroll)
+      window.removeEventListener('scroll', this.handleScroll);
     }
   }
 
@@ -46,7 +46,7 @@ class Header extends React.Component {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        transition: '0.75s ease-in-out'
+        transition: '0.75s ease-in-out',
       },
       navheader: {
         display: 'flex',
@@ -65,16 +65,16 @@ class Header extends React.Component {
         width: '50px',
         padding: '10px',
         margin: '0',
-      }
-    }
+      },
+    };
     if (!this.state.scrollTop) {
-      styles.container.background = `#000000`
-      styles.container.color = `#ffffff`
-      styles.link.color = `#ffffff`
-      styles.link.textShadow = 'none'
+      styles.container.background = `#000000`;
+      styles.container.color = `#ffffff`;
+      styles.link.color = `#ffffff`;
+      styles.link.textShadow = 'none';
     }
 
-    const { siteTitle, logo } = this.props
+    const { siteTitle, logo } = this.props;
     return (
       <Navbar style={styles.container}>
         <Navbar.Header style={styles.navheader}>
@@ -95,7 +95,9 @@ class Header extends React.Component {
               Servicios
             </Nav.Item>
             <Nav.Item
-              className={this.state.activeKey.includes('projects') ? 'active' : ''}
+              className={
+                this.state.activeKey.includes('projects') ? 'active' : ''
+              }
               componentClass={Link}
               to="/projects"
             >
@@ -109,7 +111,9 @@ class Header extends React.Component {
               About
             </Nav.Item> */}
             <Nav.Item
-              className={this.state.activeKey.includes('contact') ? 'active' : ''}
+              className={
+                this.state.activeKey.includes('contact') ? 'active' : ''
+              }
               componentClass={Link}
               to="/#contact"
             >
@@ -118,22 +122,22 @@ class Header extends React.Component {
           </Nav>
         </Navbar.Body>
       </Navbar>
-    )
+    );
   }
 
   handleScroll() {
-    let breakpoint = window.innerHeight / 2
+    let breakpoint = window.innerHeight / 2;
     if (this.props.breakpoint) {
-      breakpoint = this.props.breakpoint
+      breakpoint = this.props.breakpoint;
     }
     if (window.scrollY > breakpoint) {
       this.setState({
         scrollTop: false,
-      })
+      });
     } else {
       this.setState({
         scrollTop: true,
-      })
+      });
     }
   }
 }
@@ -142,10 +146,10 @@ Header.propTypes = {
   siteTitle: PropTypes.string,
   logo: PropTypes.object,
   breakpoint: PropTypes.number,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;
