@@ -155,7 +155,17 @@ class IndexPage extends React.Component {
         connect={connectData}
         headerBreakpoint={headerBreakpoint}
       >
-        <SEO title="Home" keywords={[`cosmic js`, `application`, `react`]} />
+        <SEO
+          title="Home"
+          keywords={[
+            `cosmic js`,
+            `application`,
+            `react`,
+            'octatum',
+            'webdev',
+            'agencia de desarrollo',
+          ]}
+        />
         <section style={styles.splash} className="section-container splash">
           {pageData.splash_phrase ? (
             <div className="splash-phrase" style={styles.splashPhrase}>
