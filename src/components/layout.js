@@ -54,6 +54,16 @@ const Layout = ({
     contactLine: {
       marginBottom: '10px',
     },
+    delimiterBox: {
+      maxWidth: 1024,
+      width: '100%',
+      margin: '0 auto',
+      display: 'flex',
+      justifyContent: 'space-between',
+      boxSizing: 'border-box',
+      padding: '0 12px',
+      alignItems: 'center',
+    },
   };
   return (
     <Container>
@@ -64,46 +74,42 @@ const Layout = ({
       />
       <main style={styles.main}>{children}</main>
       <footer style={styles.footer}>
-        {contact ? (
-          <div>
-            <h6 style={styles.contactLine}>{contact.address1}</h6>
-            <h6 style={styles.contactLine}>{contact.address2}</h6>
-            <h6
-              style={styles.contactLine}
-            >{`${contact.city} ${contact.region}, ${contact.postal_code}`}</h6>
-            <h6 style={styles.contactLine}>{`Teléfono: ${
-              contact.country_code ? contact.country_code : null
-            } ${contact.phone_number}`}</h6>
-            <h6 style={styles.contactLine}>{`Email: ${contact.email}`}</h6>
-          </div>
-        ) : null}
-        <span style={styles.span}>
-          © {new Date().getFullYear()}, Built with{' '}
-          <a style={{ color: '#3FCA00' }} href="https://www.gatsbyjs.org">
-            &nbsp;Gatsby
-          </a>
-          <a
-            style={{ height: '35px', margin: '0 20px' }}
-            href="https://cosmicjs.com/add-bucket?import_bucket=5cbf745a10d5c22da1f9b3e2"
-          >
-            <img src="https://s3-us-west-2.amazonaws.com/cosmicjs/51fe54d0-4f6e-11e9-9f32-8d001da69630-powered-by-cosmicjs.svg" />
-          </a>
-        </span>
-        {connect ? (
-          <div style={styles.linkContainer}>
-            {connect.map(link => {
-              return (
-                <a
-                  key={link.node.title}
-                  href={`https://${link.node.metadata.url}`}
-                  style={styles.link}
-                >
-                  <Icon size="3x" icon={link.node.title} />
-                </a>
-              );
-            })}
-          </div>
-        ) : null}
+        <div style={styles.delimiterBox}>
+          {contact ? (
+            <div>
+              <h6 style={styles.contactLine}>{contact.address1}</h6>
+              <h6 style={styles.contactLine}>{contact.address2}</h6>
+              <h6
+                style={styles.contactLine}
+              >{`${contact.city} ${contact.region}, ${contact.postal_code}`}</h6>
+              <h6 style={styles.contactLine}>{`Teléfono: ${
+                contact.country_code ? contact.country_code : null
+              } ${contact.phone_number}`}</h6>
+              <h6 style={styles.contactLine}>{`Email: ${contact.email}`}</h6>
+            </div>
+          ) : null}
+          <span style={styles.span}>
+            © {new Date().getFullYear()}, Hecho con{' '}
+            <a style={{ color: '#3FCA00' }} href="https://www.gatsbyjs.org">
+              &nbsp;Gatsby
+            </a>
+          </span>
+          {connect ? (
+            <div style={styles.linkContainer}>
+              {connect.map(link => {
+                return (
+                  <a
+                    key={link.node.title}
+                    href={`https://${link.node.metadata.url}`}
+                    style={styles.link}
+                  >
+                    <Icon size="3x" icon={link.node.title} />
+                  </a>
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
       </footer>
     </Container>
   );

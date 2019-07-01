@@ -156,7 +156,6 @@ class Header extends React.Component {
       styles.link.textShadow = 'none';
     }
 
-    const { siteTitle, logo } = this.props;
     return (
       <Navbar style={styles.container}>
         <div style={styles.delimiterBox}>

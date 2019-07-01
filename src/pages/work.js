@@ -175,28 +175,10 @@ class Work extends React.Component {
               >
                 <div style={styles.serviceDetails}>
                   {service.node.metadata.icon ? (
-                    <Icon
-                      icon={service.node.metadata.icon}
-                      size="3x"
-                      onClick={() =>
-                        this.handleServiceClick(serviceData.indexOf(service))
-                      }
-                    />
+                    <Icon icon={service.node.metadata.icon} size="3x" />
                   ) : null}
-                  <h5
-                    style={styles.detailsName}
-                    onClick={() =>
-                      this.handleServiceClick(serviceData.indexOf(service))
-                    }
-                  >
-                    {service.node.title}
-                  </h5>
-                  <p
-                    style={styles.detailsDesc}
-                    onClick={() =>
-                      this.handleServiceClick(serviceData.indexOf(service))
-                    }
-                  >
+                  <h5 style={styles.detailsName}>{service.node.title}</h5>
+                  <p style={styles.detailsDesc}>
                     {service.node.metadata.summary}
                   </p>
                   {this.state.activeIndex === serviceData.indexOf(service) ? (
